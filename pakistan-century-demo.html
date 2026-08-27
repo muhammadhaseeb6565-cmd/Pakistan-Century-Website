@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Frontend Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Pakistan Century Hardware and Electrical Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B365D;
+    --navy-deep:#10233F;
+    --navy-light:#2A4A7A;
+    --orange:#E67E22;
+    --orange-deep:#C6690F;
+    --cream:#F5F6F8;
+    --paper:#FFFFFF;
+    --ink:#1C2530;
+    --ink-soft:#5B6B7F;
+    --line:#E2E6EC;
+    --header-h: 78px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth; overflow-x:hidden;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  ul{list-style:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  /* ===== Top bar ===== */
+  .topbar{background:var(--navy-deep);color:#C9D4E4;font-size:12.5px;overflow:hidden;}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:34px;gap:6px;}
+  .topbar span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+  .topbar .divider{opacity:.35;margin:0 4px;}
+  .topbar-left,.topbar-right{display:flex;align-items:center;gap:0;}
+
+  /* ===== Header ===== */
+  header.main{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;}
+  .header-row{display:flex;align-items:center;gap:20px;height:var(--header-h);}
+  .logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .logo-mark{width:42px;height:42px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .logo-text{line-height:1.15;}
+  .logo-text .name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16.5px;color:var(--navy);white-space:nowrap;}
+  .logo-text .tag{font-size:10.5px;color:var(--orange-deep);font-weight:600;letter-spacing:.03em;text-transform:uppercase;}
+  .search-bar{flex:1;display:flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;height:46px;max-width:560px;}
+  .search-bar input{flex:1;border:none;outline:none;padding:0 16px;font-size:14px;font-family:inherit;background:var(--paper);}
+  .search-bar select{border:none;border-right:1px solid var(--line);background:#FAFBFC;padding:0 10px;font-size:12.5px;color:var(--ink-soft);font-family:inherit;max-width:110px;}
+  .search-bar button{width:52px;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  .header-actions{display:flex;align-items:center;gap:20px;flex-shrink:0;margin-left:auto;}
+  .header-actions .item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--ink-soft);position:relative;cursor:pointer;}
+  .header-actions .item svg{width:22px;height:22px;stroke:var(--navy);}
+  .cart-count{position:absolute;top:-6px;right:-10px;background:var(--orange);color:#fff;font-size:10px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+  /* Mobile search icon (hidden on desktop) */
+  .mob-search-btn{display:none;background:none;padding:6px;border-radius:8px;}
+  .mob-search-btn svg{width:22px;height:22px;stroke:var(--navy);}
+
+  /* Hamburger (hidden on desktop) */
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;padding:8px;background:none;border-radius:6px;flex-shrink:0;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s, opacity .25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* Mobile search overlay */
+  .mob-search-overlay{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 16px;z-index:99;}
+  .mob-search-overlay.show{display:flex;gap:8px;}
+  .mob-search-overlay input{flex:1;border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;font-size:14px;font-family:inherit;outline:none;}
+  .mob-search-overlay input:focus{border-color:var(--navy);}
+  .mob-search-overlay button{background:var(--orange);border-radius:8px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  /* Category nav */
+  .cat-nav{background:var(--navy);color:#fff;}
+  .cat-nav .wrap{display:flex;align-items:center;gap:26px;height:46px;font-size:13.5px;font-weight:500;overflow-x:auto;scrollbar-width:none;}
+  .cat-nav .wrap::-webkit-scrollbar{display:none;}
+  .cat-nav a{white-space:nowrap;opacity:.92;transition:opacity .15s;}
+  .cat-nav a:hover{opacity:1;color:var(--orange);}
+  .cat-nav .all-cats{background:var(--orange);padding:0 14px;height:46px;display:flex;align-items:center;gap:8px;font-weight:600;margin-left:-24px;flex-shrink:0;}
+
+  /* Mobile menu drawer */
+  .mob-menu{display:none;position:fixed;inset:0;z-index:200;pointer-events:none;}
+  .mob-menu.open{pointer-events:all;}
+  .mob-menu-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s;}
+  .mob-menu.open .mob-menu-overlay{opacity:1;}
+  .mob-menu-drawer{position:absolute;left:0;top:0;bottom:0;width:min(320px,85vw);background:var(--paper);transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column;}
+  .mob-menu.open .mob-menu-drawer{transform:translateX(0);}
+  .mob-menu-head{background:var(--navy);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;}
+  .mob-menu-head .logo-text .name{color:#fff;}
+  .mob-menu-head .logo-text .tag{color:var(--orange);}
+  .mob-close{background:none;color:#fff;font-size:22px;line-height:1;padding:4px;}
+  .mob-nav-list{padding:16px 0;flex:1;}
+  .mob-nav-list a{display:flex;align-items:center;gap:12px;padding:13px 20px;font-size:15px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--line);}
+  .mob-nav-list a:hover{color:var(--orange);background:var(--cream);}
+  .mob-nav-list .active{color:var(--orange);}
+  .mob-menu-footer{padding:20px;border-top:1px solid var(--line);}
+  .mob-menu-footer p{font-size:12.5px;color:var(--ink-soft);}
+  .mob-menu-footer strong{display:block;color:var(--navy);margin-bottom:4px;}
+
+  /* ===== Hero ===== */
+  .hero{background:var(--navy);position:relative;overflow:hidden;}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:40px;padding-top:60px;padding-bottom:60px;}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(230,126,34,.15);border:1px solid rgba(230,126,34,.4);color:var(--orange);font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;margin-bottom:18px;}
+  .hero h1{color:#fff;font-size:40px;line-height:1.12;font-weight:700;margin-bottom:16px;}
+  .hero h1 em{color:var(--orange);font-style:normal;}
+  .hero p{color:#B7C4D9;font-size:15.5px;max-width:430px;margin-bottom:26px;}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:8px;font-weight:600;font-size:14px;transition:transform .15s, box-shadow .15s;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 6px 18px rgba(230,126,34,.35);}
+  .btn-primary:hover{background:var(--orange-deep);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.25);}
+  .btn-ghost:hover{background:rgba(255,255,255,.15);}
+  .btn-outline{border:1.5px solid var(--line);color:var(--navy);background:#fff;}
+  .btn-outline:hover{border-color:var(--navy);}
+
+  /* Pegboard signature visual */
+  .pegboard{position:relative;background:var(--navy-deep);border-radius:16px;border:1px solid rgba(255,255,255,.08);padding:26px;aspect-ratio:1/0.82;
+    background-image:radial-gradient(rgba(255,255,255,.14) 1.6px, transparent 1.6px);
+    background-size:26px 26px;background-position:14px 14px;
+    box-shadow:inset 0 0 60px rgba(0,0,0,.35);}
+  .peg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;height:100%;}
+  .peg-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;position:relative;}
+  .peg-item::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 3px rgba(230,126,34,.2);}
+  .peg-item svg{width:30px;height:30px;stroke:#DCE4EF;stroke-width:1.6;}
+  .peg-item span{font-size:10px;color:#8FA1BC;font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+  .peg-tag{position:absolute;bottom:-14px;right:18px;background:var(--orange);color:#fff;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:12px;padding:8px 14px;border-radius:6px;transform:rotate(-3deg);box-shadow:0 8px 18px rgba(0,0,0,.35);}
+
+  /* ===== Trust strip ===== */
+  .trust{background:var(--paper);border-bottom:1px solid var(--line);}
+  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:26px;padding-bottom:26px;}
+  .trust-item{display:flex;align-items:center;gap:12px;}
+  .trust-item svg{width:30px;height:30px;stroke:var(--orange);flex-shrink:0;}
+  .trust-item .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16.5px;color:var(--navy);}
+  .trust-item .label{font-size:12px;color:var(--ink-soft);}
+
+  /* ===== Section heading ===== */
+  section{padding:52px 0;}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;}
+  .sec-head .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--orange-deep);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block;}
+  .sec-head h2{font-size:26px;color:var(--navy);}
+  .sec-head a{font-size:13.5px;font-weight:600;color:var(--navy);border-bottom:2px solid var(--orange);padding-bottom:2px;white-space:nowrap;}
+
+  /* ===== Categories ===== */
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .cat-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px;transition:border-color .15s, transform .15s;display:flex;flex-direction:column;}
+  .cat-card:hover{border-color:var(--orange);transform:translateY(-3px);}
+  .cat-icon{width:48px;height:48px;border-radius:10px;background:var(--cream);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .cat-icon svg{width:26px;height:26px;stroke:var(--navy);}
+  .cat-card h3{font-size:16px;color:var(--navy);margin-bottom:8px;}
+  .cat-card ul{font-size:12.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:4px;}
+  .cat-card li::before{content:'—  ';color:var(--orange);}
+  .cat-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+  .cat-tags span{background:var(--cream);color:var(--navy);font-size:10.5px;font-weight:600;padding:4px 9px;border-radius:20px;}
+
+  /* ===== Book-a-professional strip ===== */
+  .cat-service{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .cat-service-info{display:flex;align-items:center;gap:10px;}
+  .cat-service-info .dot{width:8px;height:8px;border-radius:50%;background:#2E7D32;flex-shrink:0;box-shadow:0 0 0 3px rgba(46,125,50,.15);}
+  .cat-service-info b{display:block;font-size:12px;color:var(--navy);font-weight:700;}
+  .cat-service-info span{display:block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);margin-top:1px;}
+  .call-btn{display:flex;align-items:center;gap:6px;background:var(--navy);color:#fff;font-size:11.5px;font-weight:600;padding:8px 12px;border-radius:7px;flex-shrink:0;transition:background .15s;}
+  .call-btn:hover{background:var(--orange);}
+  .call-btn svg{width:14px;height:14px;stroke:#fff;}
+
+  /* ===== Products ===== */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .prod-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s, transform .15s;}
+  .prod-card:hover{box-shadow:0 12px 26px rgba(27,54,93,.1);transform:translateY(-3px);}
+  .prod-thumb{aspect-ratio:1/0.86;background:var(--cream);display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid var(--line);}
+  .prod-thumb svg{width:58px;height:58px;stroke:var(--navy);stroke-width:1.4;}
+  .badge{position:absolute;top:10px;left:10px;background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:4px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em;}
+  .badge.orange{background:var(--orange);}
+  .prod-body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .prod-cat{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;font-weight:600;}
+  .prod-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.3;}
+  .prod-bottom{margin-top:auto;display:flex;align-items:center;justify-content:space-between;}
+  .prod-price{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--navy);font-size:15px;}
+  .prod-price .old{text-decoration:line-through;color:#A7B2C2;font-size:11.5px;margin-right:6px;font-weight:500;}
+  .add-btn{width:34px;height:34px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s;}
+  .add-btn:hover{background:var(--orange);}
+  .add-btn svg{width:16px;height:16px;stroke:#fff;}
+
+  /* ===== Why us ===== */
+  .why{background:var(--navy);color:#fff;}
+  .why .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  .why h2{color:#fff;font-size:28px;margin-bottom:16px;}
+  .why p{color:#B7C4D9;font-size:14.5px;margin-bottom:22px;max-width:440px;}
+  .why-list{display:flex;flex-direction:column;gap:16px;}
+  .why-list li{display:flex;gap:14px;align-items:flex-start;}
+  .why-num{font-family:'IBM Plex Mono',monospace;color:var(--orange);font-weight:600;font-size:13px;flex-shrink:0;padding-top:2px;}
+  .why-list b{color:#fff;font-size:14.5px;display:block;margin-bottom:2px;}
+  .why-list span{color:#9FB0C7;font-size:13px;}
+  .why-visual{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .stat-box{background:rgba(255,255,255,.04);border-radius:10px;padding:18px;text-align:center;}
+  .stat-box .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:var(--orange);}
+  .stat-box .l{font-size:11.5px;color:#9FB0C7;margin-top:4px;}
+
+  /* ===== CTA banner ===== */
+  .cta-banner{background:var(--orange);}
+  .cta-banner .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:34px;padding-bottom:34px;flex-wrap:wrap;gap:16px;}
+  .cta-banner h3{color:#fff;font-size:21px;}
+  .cta-banner p{color:rgba(255,255,255,.85);font-size:13.5px;margin-top:4px;}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy-deep);color:#B7C4D9;padding-top:50px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .foot-grid h4{color:#fff;font-size:14px;margin-bottom:16px;}
+  .foot-grid ul{display:flex;flex-direction:column;gap:9px;font-size:13px;}
+  .foot-grid ul a:hover{color:var(--orange);}
+  .foot-about p{font-size:13px;line-height:1.6;margin-bottom:16px;max-width:280px;color:#9FB0C7;}
+  .pay-icons{display:flex;gap:8px;margin-top:14px;}
+  .pay-icons span{background:rgba(255,255,255,.08);font-size:11px;padding:6px 10px;border-radius:6px;font-weight:600;color:#DCE4EF;}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:12px;color:#7C8DA8;flex-wrap:wrap;gap:10px;}
+  .foot-bottom a{margin-left:16px;}
+
+  /* ===================================================
+     RESPONSIVE — Tablet (≤1024px)
+  =================================================== */
+  @media(max-width:1024px){
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .search-bar{max-width:360px;}
+  }
+
+  /* ===================================================
+     RESPONSIVE — Mid-tablet (≤860px)
+  =================================================== */
+  @media(max-width:860px){
+    /* Topbar: single scrollable row */
+    .topbar .wrap{height:auto;padding-top:8px;padding-bottom:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:12px;}
+    .topbar .wrap::-webkit-scrollbar{display:none;}
+    .topbar-right{display:none;}
+
+    /* Header */
+    .search-bar{display:none;}
+    .mob-search-btn{display:flex;align-items:center;justify-content:center;}
+    .hamburger{display:flex;}
+    .header-actions .item .label-text{display:none;}
+    .header-actions{gap:14px;}
+    --header-h: 64px;
+
+    /* Category nav hidden; replaced by mobile menu */
+    .cat-nav{display:none;}
+
+    /* Hero */
+    .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:40px;padding-bottom:48px;}
+    .hero h1{font-size:32px;}
+    .hero p{font-size:14.5px;max-width:100%;}
+    .pegboard{aspect-ratio:unset;max-width:480px;margin:0 auto;}
+
+    /* Trust */
+    .trust .wrap{grid-template-columns:repeat(2,1fr);gap:16px;}
+
+    /* Why */
+    .why .wrap{grid-template-columns:1fr;gap:32px;}
+    .why p{max-width:100%;}
+
+    /* Footer */
+    .foot-grid{grid-template-columns:1fr 1fr;gap:24px;}
+  }
+
+  /* ===================================================
+     RESPONSIVE — Mobile (≤600px)
+  =================================================== */
+  @media(max-width:600px){
+    .wrap{padding:0 16px;}
+
+    /* Topbar */
+    .topbar .wrap{font-size:11.5px;}
+
+    /* Header */
+    .logo-text .tag{display:none;}
+    .logo-text .name{font-size: 14px;}
+    .logo-mark{width: 32px; height: 32px;}
+    .header-row{gap: 8px;}
+    .header-actions{gap: 12px;}
+    .item-hide-mob{display: none !important;}
+
+    /* Hero */
+    .hero .wrap{padding-top:32px;padding-bottom:40px;gap:28px;}
+    .hero h1{font-size:26px;}
+    .hero-eyebrow{font-size:11px;}
+    .hero p{font-size:14px;}
+    .btn{padding:11px 18px;font-size:13.5px;}
+    .hero-ctas{gap:10px;}
+
+    /* Pegboard */
+    .peg-item span{display:none;}
+    .peg-item{padding:8px;}
+
+    /* Trust */
+    .trust .wrap{grid-template-columns:1fr 1fr;padding-top:20px;padding-bottom:20px;gap:12px;}
+    .trust-item{gap:8px;}
+    .trust-item svg{width:24px;height:24px;}
+    .trust-item .num{font-size:14px;}
+    .trust-item .label{font-size:11px;}
+
+    /* Section */
+    section{padding:36px 0;}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:20px;}
+    .sec-head h2{font-size:22px;}
+
+    /* Categories */
+    .cat-grid{grid-template-columns:1fr;gap:14px;}
+    .cat-card{padding:18px;}
+
+    /* Products */
+    .prod-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+    .prod-body{padding:10px 10px 12px;}
+    .prod-name{font-size:13px;}
+    .prod-price{font-size:13px;}
+    .prod-thumb svg{width:42px;height:42px;}
+
+    /* Why */
+    .why .wrap{padding-top:36px;padding-bottom:36px;}
+    .why h2{font-size:22px;}
+    .stat-grid{grid-template-columns:1fr 1fr;gap:12px;}
+    .stat-box{padding:14px;}
+    .stat-box .n{font-size:22px;}
+
+    /* CTA */
+    .cta-banner .wrap{padding-top:28px;padding-bottom:28px;flex-direction:column;align-items:flex-start;}
+    .cta-banner h3{font-size:18px;}
+
+    /* Footer */
+    .foot-grid{grid-template-columns:1fr;gap:28px;}
+    .foot-about p{max-width:100%;}
+    .foot-bottom{flex-direction:column;align-items:flex-start;gap:6px;text-align:left;}
+  }
+
+  /* ===================================================
+     RESPONSIVE — Small phones (≤380px)
+  =================================================== */
+  @media(max-width:380px){
+    .hero h1{font-size:22px;}
+    .prod-grid{grid-template-columns:1fr;}
+    .trust .wrap{grid-template-columns:1fr;}
+    .trust-item{border-bottom:1px solid var(--line);padding-bottom:12px;}
+    .trust-item:last-child{border-bottom:none;padding-bottom:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Mobile menu drawer -->
+<div class="mob-menu" id="mobMenu" aria-hidden="true">
+  <div class="mob-menu-overlay" id="mobMenuOverlay"></div>
+  <div class="mob-menu-drawer">
+    <div class="mob-menu-head">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2 2.1-2.1z"/></svg>
+        </div>
+        <div class="logo-text">
+          <div class="name">Pakistan Century</div>
+          <div class="tag">Hardware &amp; Electrical</div>
+        </div>
+      </div>
+      <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mob-nav-list">
+      <a href="#">👤 Account</a>
+      <a href="#">❤️ Wishlist</a>
+      <div style="height:1px; background:var(--line); margin: 8px 20px;"></div>
+      <a href="#plumbing">🔧 Plumbing</a>
+      <a href="#hardware">🔩 Hardware</a>
+      <a href="#sanitary">🚿 Sanitary</a>
+      <a href="#electrical">⚡ Electrical Items</a>
+      <a href="#deals">📦 Wholesale Deals</a>
+      <a href="#about">🏪 About Us</a>
+      <a href="#contact">📍 Contact</a>
+    </nav>
+    <div class="mob-menu-footer">
+      <strong>Gulshan-e-Ravi, Babu Sabu Road, Lahore</strong>
+      <p>Nationwide delivery · Cash on Delivery &amp; Bank Transfer</p>
+    </div>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-left">
+      <span>📍 Gulshan-e-Ravi, Babu Sabu Road, Lahore</span>
+      <span class="divider">|</span>
+      <span>Nationwide Delivery</span>
+    </div>
+    <div class="topbar-right">
+      <span>Cash on Delivery &amp; Bank Transfer</span>
+      <span class="divider">|</span>
+      <span>Trusted Since 1997</span>
+    </div>
+  </div>
+</div>
+
+<header class="main">
+  <div class="wrap header-row">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2 2.1-2.1z"/></svg>
+      </div>
+      <div class="logo-text">
+        <div class="name">Pakistan Century</div>
+        <div class="tag">Hardware &amp; Electrical Store</div>
+      </div>
+    </a>
+    <form class="search-bar" action="#" onsubmit="event.preventDefault();" autocomplete="off">
+      <select aria-label="Category">
+        <option>All Categories</option>
+        <option>Plumbing</option>
+        <option>Hardware</option>
+        <option>Sanitary</option>
+        <option>Electrical</option>
+      </select>
+      <input type="search" placeholder="Search for faucets, wires, tools, basins..." required spellcheck="false">
+      <button type="submit" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+    </form>
+    <div class="header-actions">
+      <button class="mob-search-btn" id="mobSearchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <a class="item item-hide-mob" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="label-text">Account</span>
+      </a>
+      <a class="item item-hide-mob" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M20.8 4.6a5 5 0 0 0-7.1 0L12 6.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 20.3l8.8-8.6a5 5 0 0 0 0-7.1z"/></svg>
+        <span class="label-text">Wishlist</span>
+      </a>
+      <a class="item" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="label-text">Cart</span><span class="cart-count" id="cartCount">3</span>
+      </a>
+    </div>
+  </div>
+  <!-- Mobile search overlay -->
+  <form class="mob-search-overlay" id="mobSearchOverlay" action="#" onsubmit="event.preventDefault();" autocomplete="off">
+    <input type="search" placeholder="Search products..." id="mobSearchInput" required spellcheck="false">
+    <button type="submit" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+  </form>
+  <nav class="cat-nav">
+    <div class="wrap">
+      <a class="all-cats" href="#categories"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>All Categories</a>
+      <a href="#plumbing">Plumbing</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#sanitary">Sanitary</a>
+      <a href="#electrical">Electrical Items</a>
+      <a href="#deals">Wholesale Deals</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="wrap">
+    <div>
+      <span class="hero-eyebrow">🛠️ 28+ Years of Trusted Craftsmanship</span>
+      <h1>Premium Hardware &amp; Sanitary Solutions, <em>Since 1997</em></h1>
+      <p>Rust-proof materials, unbeatable wholesale rates, and nationwide delivery — everything Lahore trusts for plumbing, hardware, sanitary and electrical needs, now online.</p>
+      <div class="hero-ctas">
+        <a href="#products" class="btn btn-primary"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop Now</a>
+        <a href="#deals" class="btn btn-ghost">Wholesale Pricing →</a>
+      </div>
+    </div>
+    <div class="pegboard">
+      <div class="peg-grid">
+        <div class="peg-item"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2 2.1-2.1z"/></svg><span>Wrench</span></div>
+        <div class="peg-item"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12a5 5 0 0 1 10 0v1a5 5 0 0 1-10 0z"/><path d="M12 3v4M9 21h6M12 17v4"/></svg><span>Faucet</span></div>
+        <div class="peg-item"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="9" cy="8" r="1.4"/><circle cx="15" cy="8" r="1.4"/><path d="M6 13h12M6 17h12"/></svg><span>Switchboard</span></div>
+        <div class="peg-item"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 15c0-2 1.5-2 1.5-4S9 9 9 9M15 15c0-2 1.5-2 1.5-4S15 9 15 9"/></svg><span>Basin</span></div>
+        <div class="peg-item"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M8 8l-5 4 5 4M16 8l5 4-5 4"/></svg><span>Fasteners</span></div>
+        <div class="peg-item"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7z"/></svg><span>Cables</span></div>
+      </div>
+      <div class="peg-tag">EST. 1997</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2 3 7v6c0 5.5 3.8 9.7 9 11 5.2-1.3 9-5.5 9-11V7z"/></svg><div><div class="num">28+ Years</div><div class="label">Trusted Since 1997</div></div></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div><div class="num">Nationwide</div><div class="label">Delivery Across Pakistan</div></div></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div><div class="num">COD &amp; Bank</div><div class="label">Flexible Payment Options</div></div></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M20 6 9 17l-5-5"/></svg><div><div class="num">7-Day Returns</div><div class="label">Easy Exchange &amp; Warranty</div></div></div>
+  </div>
+</div>
+
+<section id="categories">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Browse the Store</span>
+        <h2>Shop by Category</h2>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" id="plumbing">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M7 12a5 5 0 0 1 10 0v1a5 5 0 0 1-10 0z"/><path d="M12 3v4M9 21h6M12 17v4"/></svg></div>
+        <h3>Plumbing</h3>
+        <div class="cat-tags"><span>Installation</span><span>Leak Repair</span><span>Pipe Fitting</span></div>
+        <ul><li>Kitchen Faucets</li><li>Bathroom Faucets</li><li>Shower Systems</li><li>Muslim Showers &amp; Hoses</li></ul>
+        <div class="cat-service">
+          <div class="cat-service-info"><span class="dot"></span><div><b>Book a Plumber</b><span>0300-1112233</span></div></div>
+          <a href="tel:03001112233" class="call-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10c1.3 2.5 3.4 4.6 5.9 5.9l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2z"/></svg>Call Now</a>
+        </div>
+      </div>
+      <div class="cat-card" id="hardware">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2 2.1-2.1z"/></svg></div>
+        <h3>Hardware</h3>
+        <div class="cat-tags"><span>Fitting</span><span>On-site Cutting</span><span>Tool Rental</span></div>
+        <ul><li>Screws &amp; Fasteners</li><li>Wrenches &amp; Pliers</li><li>Cutters</li><li>Hand Tools &amp; Fixtures</li></ul>
+        <div class="cat-service">
+          <div class="cat-service-info"><span class="dot"></span><div><b>Book a Technician</b><span>0300-2223344</span></div></div>
+          <a href="tel:03002223344" class="call-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10c1.3 2.5 3.4 4.6 5.9 5.9l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2z"/></svg>Call Now</a>
+        </div>
+      </div>
+      <div class="cat-card" id="sanitary">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 15c0-2 1.5-2 1.5-4S9 9 9 9M15 15c0-2 1.5-2 1.5-4S15 9 15 9"/></svg></div>
+        <h3>Sanitary</h3>
+        <div class="cat-tags"><span>Fitting</span><span>Bathroom Setup</span><span>Repair</span></div>
+        <ul><li>Basins &amp; Toilets</li><li>Bathroom Accessories</li><li>Soap Dispensers</li><li>Floor Drains &amp; Racks</li></ul>
+        <div class="cat-service">
+          <div class="cat-service-info"><span class="dot"></span><div><b>Book a Fitter</b><span>0300-3334455</span></div></div>
+          <a href="tel:03003334455" class="call-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10c1.3 2.5 3.4 4.6 5.9 5.9l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2z"/></svg>Call Now</a>
+        </div>
+      </div>
+      <div class="cat-card" id="electrical">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M13 2 3 14h7l-1 8 11-14h-7z"/></svg></div>
+        <h3>Electrical Items</h3>
+        <div class="cat-tags"><span>Wiring</span><span>Installation</span><span>Fault Repair</span></div>
+        <ul><li>Switches &amp; Sockets</li><li>Distribution Boards</li><li>Wires &amp; Cables</li><li>Circuit Breakers &amp; Lighting</li></ul>
+        <div class="cat-service">
+          <div class="cat-service-info"><span class="dot"></span><div><b>Book an Electrician</b><span>0300-4445566</span></div></div>
+          <a href="tel:03004445566" class="call-btn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10c1.3 2.5 3.4 4.6 5.9 5.9l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2z"/></svg>Call Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Handpicked Stock</span>
+        <h2>Best-Selling Products</h2>
+      </div>
+      <a href="#">View All →</a>
+    </div>
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <div class="prod-thumb"><span class="badge orange">Best Seller</span><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12a5 5 0 0 1 10 0v1a5 5 0 0 1-10 0z"/><path d="M12 3v4M9 21h6M12 17v4"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Plumbing</span>
+          <div class="prod-name">Chrome Kitchen Mixer Faucet</div>
+          <div class="prod-bottom"><span class="prod-price"><span class="old">Rs 4,800</span>Rs 3,950</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2 2.1-2.1z"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Hardware</span>
+          <div class="prod-name">Heavy-Duty Adjustable Wrench Set</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 1,650</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><span class="badge">New</span><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 15c0-2 1.5-2 1.5-4S9 9 9 9M15 15c0-2 1.5-2 1.5-4S15 9 15 9"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Sanitary</span>
+          <div class="prod-name">Rust-Proof Ceramic Wash Basin</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 6,200</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7z"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Electrical</span>
+          <div class="prod-name">Modular Switch &amp; Socket Panel</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 980</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12a5 5 0 0 1 10 0v1a5 5 0 0 1-10 0z"/><path d="M4 6l2-2M20 6l-2-2"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Plumbing</span>
+          <div class="prod-name">Rain Shower System, Stainless</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 8,500</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><span class="badge orange">Wholesale</span><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Hardware</span>
+          <div class="prod-name">Assorted Screws &amp; Fixtures Box (500pc)</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 2,100</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="9" cy="8" r="1.4"/><circle cx="15" cy="8" r="1.4"/><path d="M6 13h12M6 17h12"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Electrical</span>
+          <div class="prod-name">10-Way Distribution Board</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 3,400</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 21h16z"/><path d="M12 9v6"/></svg></div>
+        <div class="prod-body">
+          <span class="prod-cat">Sanitary</span>
+          <div class="prod-name">Stainless Steel Floor Drain</div>
+          <div class="prod-bottom"><span class="prod-price">Rs 750</span><button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="why" id="about">
+  <div class="wrap">
+    <div>
+      <span class="hero-eyebrow" style="margin-bottom:14px;">Why Choose Us</span>
+      <h2>Built on Trust, <br>Backed by Two Decades</h2>
+      <p>Established in 1997, we've been Lahore's cornerstone for hardware, sanitary, plumbing and electrical solutions — combining unmatched durability with pricing that consistently beats the general market.</p>
+      <ul class="why-list">
+        <li><span class="why-num">01</span><div><b>Premium Durability</b><span>Rust-proof materials and craftsmanship built to last.</span></div></li>
+        <li><span class="why-num">02</span><div><b>Unbeatable Pricing</b><span>Wholesale &amp; retail rates significantly below market average.</span></div></li>
+        <li><span class="why-num">03</span><div><b>Proven Reliability</b><span>Over two decades of trusted service since 1997.</span></div></li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="stat-grid">
+        <div class="stat-box"><div class="n">1997</div><div class="l">Year Established</div></div>
+        <div class="stat-box"><div class="n">4</div><div class="l">Core Categories</div></div>
+        <div class="stat-box"><div class="n">100%</div><div class="l">Nationwide Delivery</div></div>
+        <div class="stat-box"><div class="n">7-Day</div><div class="l">Return Window</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner" id="deals">
+  <div class="wrap">
+    <div>
+      <h3>Bulk or Wholesale Order?</h3>
+      <p>Free delivery on large wholesale orders — talk to our team for custom rates.</p>
+    </div>
+    <a href="#contact" class="btn" style="background:#fff;color:var(--orange-deep);">Get Wholesale Pricing →</a>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <div class="logo" style="margin-bottom:14px;">
+          <div class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.1 2.1-2-2 2.1-2.1z"/></svg></div>
+          <div class="logo-text"><div class="name" style="color:#fff;">Pakistan Century</div><div class="tag">Hardware &amp; Electrical Store</div></div>
+        </div>
+        <p>Your trusted partner for premium hardware &amp; sanitary solutions since 1997. Gulshan-e-Ravi, Babu Sabu Road, Lahore.</p>
+        <div class="pay-icons">
+          <span style="color:#2ecc71;">🔒 Secure Checkout</span>
+          <span>Cash on Delivery</span>
+          <span>Bank Transfer</span>
+        </div>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#plumbing">Plumbing</a></li>
+          <li><a href="#hardware">Hardware</a></li>
+          <li><a href="#sanitary">Sanitary</a></li>
+          <li><a href="#electrical">Electrical Items</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="#">7-Day Return &amp; Warranty</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get In Touch</h4>
+        <ul>
+          <li>📍 Gulshan-e-Ravi, Babu Sabu Road, Lahore</li>
+          <li>🚚 Delivering Nationwide Across Pakistan</li>
+          <li>✉️ info@pakistancenturyhardware.pk</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Pakistan Century Hardware and Electrical Store. All rights reserved.</div>
+      <div style="opacity:.7;">Demo concept for client review — not a live store.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Cart counter ──
+  let cartCount = 3;
+  const cartBadge = document.getElementById('cartCount');
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cartCount++;
+      cartBadge.textContent = cartCount;
+      btn.style.background = 'var(--orange)';
+      setTimeout(() => btn.style.background = '', 280);
+    });
+  });
+
+  // ── Mobile hamburger / drawer ──
+  const hamburger   = document.getElementById('hamburger');
+  const mobMenu     = document.getElementById('mobMenu');
+  const mobClose    = document.getElementById('mobClose');
+  const mobOverlay  = document.getElementById('mobMenuOverlay');
+
+  function openMenu() {
+    mobMenu.classList.add('open');
+    mobMenu.setAttribute('aria-hidden', 'false');
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobMenu.classList.remove('open');
+    mobMenu.setAttribute('aria-hidden', 'true');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => mobMenu.classList.contains('open') ? closeMenu() : openMenu());
+  mobClose.addEventListener('click', closeMenu);
+  mobOverlay.addEventListener('click', closeMenu);
+
+  // Close drawer when a nav link is tapped
+  document.querySelectorAll('.mob-nav-list a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // ── Mobile search toggle ──
+  const mobSearchBtn     = document.getElementById('mobSearchBtn');
+  const mobSearchOverlay = document.getElementById('mobSearchOverlay');
+  const mobSearchInput   = document.getElementById('mobSearchInput');
+
+  mobSearchBtn.addEventListener('click', () => {
+    const isOpen = mobSearchOverlay.classList.toggle('show');
+    if (isOpen) setTimeout(() => mobSearchInput.focus(), 50);
+  });
+
+  // Close search on outside click
+  document.addEventListener('click', e => {
+    if (!mobSearchOverlay.contains(e.target) && e.target !== mobSearchBtn) {
+      mobSearchOverlay.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>
